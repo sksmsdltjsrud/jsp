@@ -9,15 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Test08
- */
-/* @WebServlet("/T08") */
-public class Test08 extends HttpServlet {
-	
+// *******클래스로 만들기
+/*@WebServlet("/T09")*/ // 컨트롤러
+public class Test09Ok extends HttpServlet {
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html; charset=utf-8");
+		// 한글 처리
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=uft-8");
 		
 		String mid = request.getParameter("mid");
 		String pwd = request.getParameter("pwd");
@@ -25,10 +24,12 @@ public class Test08 extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		out.println("아이디 : "+mid+"<br/>");
-		out.println("비밀번호 : "+pwd+"<br/>");
-		out.println("이름 : "+name+"<br/>");
-		out.println("<a href='javagreenJ/0418/test09.jstp'>돌아가기</a>");
+		out.println("아이디3 : "+mid+"<br/>");
+		out.println("비밀번호3 : "+pwd+"<br/>");
+		out.println("이름3 : "+name+"<br/>");
+		/* out.println("<a href='/javagreenJ/0418/test08.jstp'>돌아가기</a>"); */
+		// 주소를 줘서 들어가는 방법 ↓
+		out.println("<a href='"+request.getContextPath()+"/0418/test09.jsp'>돌아가기</a>");
+		
 	}
-
 }
