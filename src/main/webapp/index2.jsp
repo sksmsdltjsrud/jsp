@@ -1,8 +1,13 @@
+<%@page import="study.database.LoginVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+  ArrayList<LoginVO> vos = (ArrayList<LoginVO>) request.getAttribute("vos");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>javagreenJ프로젝트(이선경)</title>
+  <title>javagreenJ프로젝트(홍길동)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%@ include file="/include/bs4.jsp" %>
@@ -22,9 +27,31 @@
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-4">
-      <h2>About Me</h2>
-      <h5>Photo of me:</h5>
-      <div class="fakeimg">Fake Image</div>
+      <h2 class="p-2">오늘의 핫 이슈</h2>
+      <h6>새로 가입한회원:</h6>
+      <div class="fakeimg">
+        <table class="table table-bordered text-center m-0">
+          <tr class="text-white bg-dark">
+            <th>아이디</th>
+            <th>성명</th>
+          </tr>
+	<%    int cnt = 0;
+	      for(LoginVO vo : vos) {
+	      	cnt++;
+	      	if(cnt < 4) {
+	%>
+	           <tr>
+	             <td>&nbsp; - <%=vo.getMid() %></td>
+	             <td><%=vo.getName() %></td>
+	           </tr>
+	<%    
+	      	}
+	      	else {
+	      		break;
+	      	}
+	      } %>
+	      </table>
+      </div>
       <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
       <h3>Some Links</h3>
       <p>Lorem ipsum dolor sit ame.</p>
@@ -45,7 +72,7 @@
       <hr class="d-sm-none">
     </div>
     <div class="col-sm-8">
-      <h2>TITLE HEADING</h2>
+      <h2 class="p-2">TITLE HEADING</h2>
       <h5>Title description, Dec 7, 2017</h5>
       <div class="fakeimg">Fake Image</div>
       <p>Some text..</p>
@@ -61,6 +88,5 @@
 </div>
 
 <%@ include file="/include/footer.jsp" %>
-
 </body>
 </html>
